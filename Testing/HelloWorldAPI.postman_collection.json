@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "3cf1144e-eb8f-49bc-b84e-82735dc9e0d5",
+		"name": "HelloWorldAPI",
+		"description": "Kenneth Valenciano project for HelloWorld API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01. Get Movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0844896f-8932-4e2e-b737-7181e2fdd439",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}movies",
+					"host": [
+						"{{baseUrl}}movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02. Create movie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43caa486-9936-4947-a335-d51ae7bc6325",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.be.a(\"string\");\r",
+							"\r",
+							"    pm.globals.set(\"movieGuid\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"AA\",\r\n    \"year\": 2020,\r\n    \"runtime\": 100,\r\n    \"categories\": [\r\n      \"action\"\r\n    ],\r\n    \"release-date\": \"2019-03-08\",\r\n    \"director\": \"AA\",\r\n    \"writer\": [\r\n      \"AA\"\r\n    ],\r\n    \"actors\": [\r\n      \"AA\"\r\n    ],\r\n    \"storyline\": \"AA\"\r\n  }\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}movies",
+					"host": [
+						"{{baseUrl}}movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03. Update movie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9a0add6-c13d-4da3-8086-09b707d22b60",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Ad Astra AA\",\r\n    \"year\" : 2019,\r\n    \"runtime\" : 124,\r\n    \"categories\" : [\r\n      \"adventure\",\r\n      \"fantasy\",\r\n      \"mystery\",\r\n      \"thriller\",\r\n\t  \"sci-fi\"\r\n    ],\r\n    \"release-date\" : \"2019-09-29\",\r\n    \"director\" : \"James Gray\",\r\n    \"writer\" : [\r\n      \"James Gray\",\r\n      \"Ethan Gross\"\r\n    ],\r\n    \"actors\" : [\r\n      \"Brad Pitt\",\r\n      \"Dede Gardner\",\r\n      \"Jeremy Kleiner\",\r\n      \"James Gray\",\r\n      \"Anthony Katagas\",\r\n      \"Rodrigo Teixeira\",\r\n      \"Arnon Milchan\"\r\n    ],\r\n    \"storyline\" : \"Thirty years ago, Clifford McBride led a voyage into deep space, but the ship and crew were never heard from again. Now his son -- a fearless astronaut -- must embark on a daring mission to Neptune to uncover the truth about his missing father and a mysterious power surge that threatens the stability of the universe.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}movies/{{movieGuid}}",
+					"host": [
+						"{{baseUrl}}movies"
+					],
+					"path": [
+						"{{movieGuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04. Delete movie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "595e293d-04cd-42e8-8951-140ff49a4790",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}movies/{{movieGuid}}",
+					"host": [
+						"{{baseUrl}}movies"
+					],
+					"path": [
+						"{{movieGuid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d1084001-e468-4a7e-b2fb-d1c158fb4786",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c855a5fd-3d57-4f6b-839e-780d09f87151",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "2aca8da4-94e9-4da0-ab61-23ddc49e97fd",
+			"key": "baseUrl",
+			"value": "https://helloworldapi20201203083901.azurewebsites.net/"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
