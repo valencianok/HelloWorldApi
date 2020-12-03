@@ -1,0 +1,14 @@
+﻿# pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworldapi
+  labels:
+    app: helloworldapi
+spec:
+  containers:
+    - image: valencianok/helloworldapi:latest
+      name: helloworldapi
+      ports:
+        - containerPort: 80
+
